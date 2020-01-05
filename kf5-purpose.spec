@@ -1,15 +1,16 @@
-%define		kdeframever	5.59
+%define		kdeframever	5.65
 %define		qtver		5.9.0
 %define		kfname		purpose
 
 Summary:	purpose
 Name:		kf5-%{kfname}
-Version:	5.59.0
+Version:	5.65.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	a56a20ee5dda3eb6e133c14203bd975e
+# Source0-md5:	ab511c3e83c5bf5c8dcf87107d812c1f
+Patch0:		%{name}-main_js.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
@@ -45,6 +46,7 @@ Pliki nagłówkowe dla programistów używających %{kfname}.
 
 %prep
 %setup -q -n %{kfname}-%{version}
+%patch0 -p0
 
 %build
 install -d build
@@ -68,7 +70,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kfname}5.lang
 %defattr(644,root,root,755)
-/etc/xdg/purpose.categories
 %attr(755,root,root) %ghost %{_libdir}/libKF5Purpose.so.5
 %attr(755,root,root) %{_libdir}/libKF5Purpose.so.5.*.*
 %attr(755,root,root) %ghost %{_libdir}/libKF5PurposeWidgets.so.5
@@ -109,6 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/accounts/services/kde/google-youtube.service
 %{_datadir}/accounts/services/kde/nextcloud-upload.service
 %{_datadir}/accounts/services/kde/twitter-microblog.service
+%{_datadir}/qlogging-categories5/purpose.categories
 %{_iconsdir}/hicolor/128x128/apps/phabricator-purpose.png
 %{_iconsdir}/hicolor/128x128/apps/reviewboard-purpose.png
 %{_iconsdir}/hicolor/16x16/actions/kipiplugin_youtube.png

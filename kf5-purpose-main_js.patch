@@ -1,0 +1,8 @@
+--- src/plugins/twitter/contents/code/main.js.in~	2019-12-07 22:50:38.000000000 +0100
++++ src/plugins/twitter/contents/code/main.js.in	2020-01-05 01:41:32.233315914 +0100
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env @NODEJS_BINARY@
++#!/usr/bin/@NODEJS_BINARY@
+ 
+ function processArgs() {
+     var ret = {};
