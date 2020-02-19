@@ -24,6 +24,7 @@ BuildRequires:	kf5-kcoreaddons-devel >= %{version}
 BuildRequires:	kf5-ki18n-devel >= %{version}
 BuildRequires:	kf5-kirigami2-devel >= %{version}
 BuildRequires:	libaccounts-qt5-devel
+BuildRequires:	libsignon-qt5-devel >= 8.55
 BuildRequires:	libutempter-devel
 BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.164
