@@ -5,7 +5,7 @@
 Summary:	purpose
 Name:		kf5-%{kfname}
 Version:	5.67.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
@@ -111,6 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/purpose/reviewboard/librbpurposequickplugin.so
 %{_libdir}/qt5/qml/org/kde/purpose/reviewboard/qmldir
 %attr(755,root,root) %{_libexecdir}/kf5/purposeprocess
+%dir %{_datadir}/accounts
 %dir %{_datadir}/accounts/services
 %dir %{_datadir}/accounts/services/kde
 %{_datadir}/accounts/services/kde/google-youtube.service
