@@ -22,6 +22,7 @@ BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	kf5-kconfig-devel >= %{version}
 BuildRequires:	kf5-kcoreaddons-devel >= %{version}
 BuildRequires:	kf5-ki18n-devel >= %{version}
+BuildRequires:	kf5-kio-devel >= %{version}
 BuildRequires:	kf5-kirigami2-devel >= %{version}
 BuildRequires:	libaccounts-glib-devel
 BuildRequires:	libaccounts-qt5-devel
