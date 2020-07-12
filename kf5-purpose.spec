@@ -2,10 +2,10 @@
 %define		qtver		5.9.0
 %define		kfname		purpose
 
-Summary:	purpose
+Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
 Version:	5.67.0
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
@@ -14,7 +14,6 @@ Patch0:		%{name}-main_js.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
-
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gettext-devel
 BuildRequires:	ka5-kaccounts-integration-devel
@@ -38,7 +37,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		qt5dir		%{_libdir}/qt5
 
 %description
-purpose.
+This framework offers the possibility to create integrate services and
+actions on any application without having to implement them
+specifically. Purpose will offer them mechanisms to list the different
+alternatives to execute given the requested action type and will
+facilitate components so that all the plugins can receive all the
+information they need.
+
+%package twitter
+Summary:	Twitter plugin for purpose
+Group:		X11/Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Twitter plugin for purpose.
 
 %package devel
 Summary:	Header files for %{kfname} development
@@ -118,7 +130,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/accounts/services/kde
 %{_datadir}/accounts/services/kde/google-youtube.service
 %{_datadir}/accounts/services/kde/nextcloud-upload.service
-%{_datadir}/accounts/services/kde/twitter-microblog.service
 %{_datadir}/qlogging-categories5/purpose.categories
 %{_iconsdir}/hicolor/128x128/apps/phabricator-purpose.png
 %{_iconsdir}/hicolor/128x128/apps/reviewboard-purpose.png
@@ -130,14 +141,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/48x48/actions/kipiplugin_youtube.png
 %{_iconsdir}/hicolor/64x64/actions/kipiplugin_youtube.png
 %dir %{_datadir}/kpackage/Purpose
-%dir %{_datadir}/kpackage/Purpose/Twitter
-%dir %{_datadir}/kpackage/Purpose/Twitter/contents
-%dir %{_datadir}/kpackage/Purpose/Twitter/contents/code
-%{_datadir}/kpackage/Purpose/Twitter/contents/code/main.js
-%{_datadir}/kpackage/Purpose/Twitter/contents/code/package.json
-%dir %{_datadir}/kpackage/Purpose/Twitter/contents/config
-%{_datadir}/kpackage/Purpose/Twitter/contents/config/config.qml
-%{_datadir}/kpackage/Purpose/Twitter/metadata.json
 %dir %{_datadir}/purpose
 %{_datadir}/purpose/bluetoothplugin_config.qml
 %{_datadir}/purpose/kdeconnectplugin_config.qml
@@ -146,6 +149,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/purpose/reviewboardplugin_config.qml
 %{_datadir}/purpose/saveasplugin_config.qml
 %{_datadir}/purpose/youtubeplugin_config.qml
+
+%files twitter
+%defattr(644,root,root,755)
+%{_datadir}/accounts/services/kde/twitter-microblog.service
+%dir %{_datadir}/kpackage/Purpose/Twitter
+%dir %{_datadir}/kpackage/Purpose/Twitter/contents
+%dir %{_datadir}/kpackage/Purpose/Twitter/contents/code
+%{_datadir}/kpackage/Purpose/Twitter/contents/code/main.js
+%{_datadir}/kpackage/Purpose/Twitter/contents/code/package.json
+%dir %{_datadir}/kpackage/Purpose/Twitter/contents/config
+%{_datadir}/kpackage/Purpose/Twitter/contents/config/config.qml
+%{_datadir}/kpackage/Purpose/Twitter/metadata.json
 
 %files devel
 %defattr(644,root,root,755)
