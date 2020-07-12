@@ -49,7 +49,7 @@ Summary:	Twitter plugin for purpose
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
-%description devel
+%description twitter
 Twitter plugin for purpose.
 
 %package devel
