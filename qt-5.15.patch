@@ -1,0 +1,14 @@
+--- purpose-5.67.0/src/externalprocess/purposeprocess_main.cpp~	2020-02-02 13:57:25.000000000 +0100
++++ purpose-5.67.0/src/externalprocess/purposeprocess_main.cpp	2020-07-12 20:47:03.042743144 +0200
+@@ -90,11 +90,7 @@
+ 
+ private Q_SLOTS:
+     void error() {
+-#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+         const auto socketError = m_socket.error();
+-#else
+-        const auto socketError = m_socket.socketError();
+-#endif
+         qCWarning(PURPOSE_EXTERNAL_PROCESS_LOG) << "socket error:" << socketError;
+     }
+ 

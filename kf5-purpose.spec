@@ -5,12 +5,13 @@
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
 Version:	5.67.0
-Release:	4
+Release:	5
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
 # Source0-md5:	4039367834bc9039a84261b5a8d9912c
 Patch0:		%{name}-main_js.patch
+Patch1:		qt-5.15.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
@@ -67,6 +68,7 @@ Pliki nagłówkowe dla programistów używających %{kfname}.
 %prep
 %setup -q -n %{kfname}-%{version}
 %patch0 -p0
+%patch1 -p1
 
 %build
 install -d build
