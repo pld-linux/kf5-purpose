@@ -1,17 +1,15 @@
-%define		kdeframever	5.67
+%define		kdeframever	5.80
 %define		qtver		5.9.0
 %define		kfname		purpose
 
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
-Version:	5.67.0
-Release:	5
+Version:	5.80.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	4039367834bc9039a84261b5a8d9912c
-Patch0:		%{name}-main_js.patch
-Patch1:		qt-5.15.patch
+# Source0-md5:	6fba6b9296a806badc9a6b871c027a60
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
@@ -67,8 +65,6 @@ Pliki nagłówkowe dla programistów używających %{kfname}.
 
 %prep
 %setup -q -n %{kfname}-%{version}
-%patch0 -p0
-%patch1 -p1
 
 %build
 install -d build
@@ -92,13 +88,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kfname}5.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %ghost %{_libdir}/libKF5Purpose.so.5
+%ghost %{_libdir}/libKF5Purpose.so.5
 %attr(755,root,root) %{_libdir}/libKF5Purpose.so.5.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKF5PurposeWidgets.so.5
+%ghost %{_libdir}/libKF5PurposeWidgets.so.5
 %attr(755,root,root) %{_libdir}/libKF5PurposeWidgets.so.5.*.*
-%attr(755,root,root) %ghost %{_libdir}/libPhabricatorHelpers.so.5
+%ghost %{_libdir}/libPhabricatorHelpers.so.5
 %attr(755,root,root) %{_libdir}/libPhabricatorHelpers.so.5.*.*
-%attr(755,root,root) %ghost %{_libdir}/libReviewboardHelpers.so.5
+%ghost %{_libdir}/libReviewboardHelpers.so.5
 %attr(755,root,root) %{_libdir}/libReviewboardHelpers.so.5.*.*
 %dir %{_libdir}/qt5/plugins/kf5/kfileitemaction
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kfileitemaction/sharefileitemaction.so
@@ -142,7 +138,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/32x32/actions/kipiplugin_youtube.png
 %{_iconsdir}/hicolor/48x48/actions/kipiplugin_youtube.png
 %{_iconsdir}/hicolor/64x64/actions/kipiplugin_youtube.png
-%dir %{_datadir}/kpackage/Purpose
 %dir %{_datadir}/purpose
 %{_datadir}/purpose/bluetoothplugin_config.qml
 %{_datadir}/purpose/kdeconnectplugin_config.qml
@@ -151,18 +146,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/purpose/reviewboardplugin_config.qml
 %{_datadir}/purpose/saveasplugin_config.qml
 %{_datadir}/purpose/youtubeplugin_config.qml
+%{_datadir}/qlogging-categories5/purpose.renamecategories
 
-%files twitter
-%defattr(644,root,root,755)
-%{_datadir}/accounts/services/kde/twitter-microblog.service
-%dir %{_datadir}/kpackage/Purpose/Twitter
-%dir %{_datadir}/kpackage/Purpose/Twitter/contents
-%dir %{_datadir}/kpackage/Purpose/Twitter/contents/code
-%{_datadir}/kpackage/Purpose/Twitter/contents/code/main.js
-%{_datadir}/kpackage/Purpose/Twitter/contents/code/package.json
-%dir %{_datadir}/kpackage/Purpose/Twitter/contents/config
-%{_datadir}/kpackage/Purpose/Twitter/contents/config/config.qml
-%{_datadir}/kpackage/Purpose/Twitter/metadata.json
+#%%files twitter
+#%%defattr(644,root,root,755)
 
 %files devel
 %defattr(644,root,root,755)
@@ -170,5 +157,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/KF5/purposewidgets
 %{_libdir}/cmake/KDEExperimentalPurpose
 %{_libdir}/cmake/KF5Purpose
-%attr(755,root,root) %{_libdir}/libKF5Purpose.so
-%attr(755,root,root) %{_libdir}/libKF5PurposeWidgets.so
+%{_libdir}/libKF5Purpose.so
+%{_libdir}/libKF5PurposeWidgets.so
