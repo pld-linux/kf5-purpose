@@ -1,15 +1,15 @@
-%define		kdeframever	5.86
+%define		kdeframever	5.87
 %define		qtver		5.9.0
 %define		kfname		purpose
 
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
-Version:	5.86.0
+Version:	5.87.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	933bd354c5572e2c9e5a25e45a06a786
+# Source0-md5:	976366da7f34423ddb0b1ccc2d6bdf03
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
@@ -99,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt5/plugins/kf5/kfileitemaction
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kfileitemaction/sharefileitemaction.so
 %dir %{_libdir}/qt5/plugins/kf5/purpose
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/barcodeplugin.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/bluetoothplugin.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/emailplugin.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/imgurplugin.so
@@ -138,18 +139,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/32x32/actions/kipiplugin_youtube.png
 %{_iconsdir}/hicolor/48x48/actions/kipiplugin_youtube.png
 %{_iconsdir}/hicolor/64x64/actions/kipiplugin_youtube.png
-%dir %{_datadir}/purpose
-%{_datadir}/purpose/bluetoothplugin_config.qml
-%{_datadir}/purpose/kdeconnectplugin_config.qml
-%{_datadir}/purpose/nextcloudplugin_config.qml
-%{_datadir}/purpose/phabricatorplugin_config.qml
-%{_datadir}/purpose/reviewboardplugin_config.qml
-%{_datadir}/purpose/saveasplugin_config.qml
-%{_datadir}/purpose/youtubeplugin_config.qml
+%{_datadir}/purpose
 %{_datadir}/qlogging-categories5/purpose.renamecategories
-
-#%%files twitter
-#%%defattr(644,root,root,755)
 
 %files devel
 %defattr(644,root,root,755)
