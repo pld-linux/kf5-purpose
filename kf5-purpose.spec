@@ -1,15 +1,15 @@
-%define		kdeframever	5.89
+%define		kdeframever	5.90
 %define		qtver		5.9.0
 %define		kfname		purpose
 
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
-Version:	5.89.0
+Version:	5.90.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	523c1b59f8c4a95f51533cb2441a6785
+# Source0-md5:	f4c8a6cbf73f7a14ceb2ef165d1edc6a
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
@@ -141,6 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/64x64/actions/kipiplugin_youtube.png
 %{_datadir}/purpose
 %{_datadir}/qlogging-categories5/purpose.renamecategories
+%{_libdir}/qt5/plugins/kf5/purpose/twitterplugin.so
 
 %files devel
 %defattr(644,root,root,755)
