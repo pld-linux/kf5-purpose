@@ -1,15 +1,15 @@
-%define		kdeframever	5.90
+%define		kdeframever	5.91
 %define		qtver		5.9.0
 %define		kfname		purpose
 
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
-Version:	5.90.0
+Version:	5.91.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	f4c8a6cbf73f7a14ceb2ef165d1edc6a
+# Source0-md5:	dbf82286cc4bd94226c1f587ae97ecf2
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
