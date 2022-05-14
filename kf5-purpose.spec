@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.93
+%define		kdeframever	5.94
 %define		qtver		5.9.0
 %define		kfname		purpose
 
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
-Version:	5.93.0
+Version:	5.94.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	04d0963a15c243f056f570c7f131e501
+# Source0-md5:	62928a8400931c074e4f924899e0ee3b
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
@@ -127,7 +127,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt5/qml/org/kde/purpose/phabricator
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/purpose/phabricator/libphabricatorquickplugin.so
 %{_libdir}/qt5/qml/org/kde/purpose/phabricator/qmldir
-%{_libdir}/qt5/qml/org/kde/purpose/plugins.qmltypes
 %{_libdir}/qt5/qml/org/kde/purpose/qmldir
 %dir %{_libdir}/qt5/qml/org/kde/purpose/reviewboard
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/purpose/reviewboard/librbpurposequickplugin.so
@@ -150,7 +149,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/64x64/actions/kipiplugin_youtube.png
 %{_datadir}/purpose
 %{_datadir}/qlogging-categories5/purpose.renamecategories
-%{_libdir}/qt5/plugins/kf5/purpose/twitterplugin.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/twitterplugin.so
+%{_libdir}/qt5/qml/org/kde/purpose/AlternativesView.qml
+%{_libdir}/qt5/qml/org/kde/purpose/JobView.qml
 
 %files devel
 %defattr(644,root,root,755)
