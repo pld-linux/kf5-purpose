@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.95
-%define		qtver		5.9.0
+%define		kdeframever	5.96
+%define		qtver		5.15.2
 %define		kfname		purpose
 
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
-Version:	5.95.0
+Version:	5.96.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	82686740c9911e3def914ee7673040bc
+# Source0-md5:	d81d167a82db94d94f48001e86b58f5c
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
