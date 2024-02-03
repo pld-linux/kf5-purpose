@@ -1,21 +1,21 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.114
+%define		kdeframever	5.249.0
 %define		qtver		5.15.2
 %define		kfname		purpose
 
 Summary:	Offers available actions for a specific purpose
 Name:		kf5-%{kfname}
-Version:	5.114.0
-Release:	1
+Version:	5.249.0
+Release:	0.1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	7fa745957ed87c4fc9bdf3ed2d42e0a4
+Source0:	https://download.kde.org/unstable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
+# Source0-md5:	5756df993df341be741a26cb5aa7a576
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt6Core-devel >= %{qtver}
+BuildRequires:	Qt6Test-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16
 BuildRequires:	gettext-devel
 BuildRequires:	ka5-kaccounts-integration-devel
@@ -24,7 +24,7 @@ BuildRequires:	kf5-kconfig-devel >= %{version}
 BuildRequires:	kf5-kcoreaddons-devel >= %{version}
 BuildRequires:	kf5-ki18n-devel >= %{version}
 BuildRequires:	kf5-kio-devel >= %{version}
-BuildRequires:	kf5-kirigami2-devel >= %{version}
+BuildRequires:	kf6-kirigami-devel
 BuildRequires:	libaccounts-glib-devel
 BuildRequires:	libaccounts-qt5-devel
 BuildRequires:	libsignon-qt5-devel >= 8.55
@@ -36,7 +36,7 @@ BuildRequires:	xz
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt5dir		%{_libdir}/qt5
+%define		qt6dir		%{_libdir}/qt6
 
 %description
 This framework offers the possibility to create integrate services and
@@ -86,7 +86,7 @@ Pliki nagłówkowe dla programistów używających %{kfname}.
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
-%find_lang %{kfname}5 --all-name --with-kde
+%find_lang %{kfname}6 --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -94,69 +94,57 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{kfname}5.lang
+%files -f %{kfname}6.lang
 %defattr(644,root,root,755)
-%ghost %{_libdir}/libKF5Purpose.so.5
-%attr(755,root,root) %{_libdir}/libKF5Purpose.so.5.*.*
-%ghost %{_libdir}/libKF5PurposeWidgets.so.5
-%attr(755,root,root) %{_libdir}/libKF5PurposeWidgets.so.5.*.*
-%ghost %{_libdir}/libPhabricatorHelpers.so.5
-%attr(755,root,root) %{_libdir}/libPhabricatorHelpers.so.5.*.*
-%ghost %{_libdir}/libReviewboardHelpers.so.5
-%attr(755,root,root) %{_libdir}/libReviewboardHelpers.so.5.*.*
-%dir %{_libdir}/qt5/plugins/kf5/kfileitemaction
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kfileitemaction/sharefileitemaction.so
-%dir %{_libdir}/qt5/plugins/kf5/purpose
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/barcodeplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/bluetoothplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/emailplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/imgurplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/kdeconnectplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/kdeconnectsmsplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/ktpsendfileplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/nextcloudplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/pastebinplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/phabricatorplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/reviewboardplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/saveasplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/telegramplugin.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/youtubeplugin.so
-%dir %{_libdir}/qt5/qml/org/kde/purpose
-%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/purpose/libpurposequickplugin.so
-%dir %{_libdir}/qt5/qml/org/kde/purpose/phabricator
-%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/purpose/phabricator/libphabricatorquickplugin.so
-%{_libdir}/qt5/qml/org/kde/purpose/phabricator/qmldir
-%{_libdir}/qt5/qml/org/kde/purpose/qmldir
-%dir %{_libdir}/qt5/qml/org/kde/purpose/reviewboard
-%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/purpose/reviewboard/librbpurposequickplugin.so
-%{_libdir}/qt5/qml/org/kde/purpose/reviewboard/qmldir
-%attr(755,root,root) %{_libexecdir}/kf5/purposeprocess
-%dir %{_datadir}/accounts
-%dir %{_datadir}/accounts/services
-%dir %{_datadir}/accounts/services/kde
-%{_datadir}/accounts/services/kde/google-youtube.service
-%{_datadir}/accounts/services/kde/nextcloud-upload.service
-%{_datadir}/qlogging-categories5/purpose.categories
-%{_iconsdir}/hicolor/128x128/apps/phabricator-purpose.png
-%{_iconsdir}/hicolor/128x128/apps/reviewboard-purpose.png
-%{_iconsdir}/hicolor/16x16/actions/kipiplugin_youtube.png
-%{_iconsdir}/hicolor/16x16/apps/phabricator-purpose.png
-%{_iconsdir}/hicolor/16x16/apps/reviewboard-purpose.png
-%{_iconsdir}/hicolor/22x22/actions/kipiplugin_youtube.png
-%{_iconsdir}/hicolor/32x32/actions/kipiplugin_youtube.png
-%{_iconsdir}/hicolor/48x48/actions/kipiplugin_youtube.png
-%{_iconsdir}/hicolor/64x64/actions/kipiplugin_youtube.png
-%{_datadir}/purpose
-%{_datadir}/qlogging-categories5/purpose.renamecategories
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/purpose/twitterplugin.so
-%{_libdir}/qt5/qml/org/kde/purpose/AlternativesView.qml
-%{_libdir}/qt5/qml/org/kde/purpose/JobView.qml
+%ghost %{_libdir}/libKF6Purpose.so.6
+%attr(755,root,root) %{_libdir}/libKF6Purpose.so.5.*.*
+%ghost %{_libdir}/libKF6PurposeWidgets.so.6
+%attr(755,root,root) %{_libdir}/libKF6PurposeWidgets.so.5.*.*
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/kfileitemaction/sharefileitemaction.so
+%dir %{_libdir}/qt6/plugins/kf6/purpose
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/barcodeplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/bluetoothplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/emailplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/imgurplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/kdeconnectplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/kdeconnectsmsplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/pastebinplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/phabricatorplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/reviewboardplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/saveasplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/telegramplugin.so
+%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/purpose/twitterplugin.so
+%{_libdir}/qt6/qml/org/kde/purpose/AlternativesView.qml
+%{_libdir}/qt6/qml/org/kde/purpose/JobView.qml
+%{_libdir}/qt6/qml/org/kde/purpose/kde-qmlmodule.version
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/purpose/libpurposequickplugin.so
+%dir %{_libdir}/qt6/qml/org/kde/purpose/phabricator
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/purpose/phabricator/libphabricatorquickplugin.so
+%{_libdir}/qt6/qml/org/kde/purpose/phabricator/qmldir
+%{_libdir}/qt6/qml/org/kde/purpose/purposequickplugin.qmltypes
+%{_libdir}/qt6/qml/org/kde/purpose/qmldir
+%dir %{_libdir}/qt6/qml/org/kde/purpose/reviewboard
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/purpose/reviewboard/librbpurposequickplugin.so
+%{_libdir}/qt6/qml/org/kde/purpose/reviewboard/qmldir
+%{_prefix}/libexec/kf6/purposeprocess
+%{_iconsdir}/hicolor/128x128/apps/phabricator-purpose6.png
+%{_iconsdir}/hicolor/128x128/apps/reviewboard-purpose6.png
+%{_iconsdir}/hicolor/16x16/apps/phabricator-purpose6.png
+%{_iconsdir}/hicolor/16x16/apps/reviewboard-purpose6.png
+%dir %{_datadir}/kf6/purpose
+%{_datadir}/kf6/purpose/barcodeplugin_config.qml
+%{_datadir}/kf6/purpose/bluetoothplugin_config.qml
+%{_datadir}/kf6/purpose/kdeconnectplugin_config.qml
+%{_datadir}/kf6/purpose/phabricatorplugin_config.qml
+%{_datadir}/kf6/purpose/reviewboardplugin_config.qml
+%{_datadir}/kf6/purpose/saveasplugin_config.qml
+%{_datadir}/qlogging-categories6/purpose.categories
+%{_datadir}/qlogging-categories6/purpose.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/purpose
-%{_includedir}/KF5/purposewidgets
-%{_libdir}/cmake/KDEExperimentalPurpose
-%{_libdir}/cmake/KF5Purpose
-%{_libdir}/libKF5Purpose.so
-%{_libdir}/libKF5PurposeWidgets.so
+%{_includedir}/KF6/Purpose
+%{_includedir}/KF6/PurposeWidgets
+%{_libdir}/cmake/KF6Purpose
+%{_libdir}/libKF6Purpose.so
+%{_libdir}/libKF6PurposeWidgets.so
